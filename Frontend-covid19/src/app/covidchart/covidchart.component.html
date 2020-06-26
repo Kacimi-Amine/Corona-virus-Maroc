@@ -1,0 +1,166 @@
+<!-- <section id="header">
+  <div class="container">
+    <div class="row">
+      <div class="col" id="col_title" align=center>
+        <h1> COVID-19</h1>
+      <p>"Stay Home, Stay Safe   <i class="fa fa-heart" style="font-size:48px;color:purple"></i>
+        "   
+      </p>
+      </div>
+    </div>
+  </div>
+</section> -->
+<section id="statistic">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col text-center">
+          <h1>Statistiques du Maroc </h1>
+        </div>
+      </div>
+  <br>
+      <div class="row">
+        <div class="col text-center mb-3">
+          <div class="form-group" >
+              <select  (change)="regionChanged($event.target.value)"  class="form-control"  id="country">
+              <option selected  value="Tous le Maroc" style="font-size: 1.1em;">Tous le Maroc</option>
+              <option *ngFor="let reg of regions" value="{{reg}}" style="font-size: 1.1em;"> {{reg}}</option>
+              </select>
+          </div>
+        </div>
+      </div>
+  
+  
+  
+     
+    
+  
+      <div class="row">
+        <div class="col-md-4 nd-3">
+          <div class="card card-infected"  >
+            <div class="cardbody">
+             <h3 class="card-title">Confirmés
+              <i class="fa fa-medkit" style="font-size:36px;color:red"></i>
+             </h3> 
+             <p class="card-text" [countUp]="data['confirmed']" >
+                       {{data['confirmed']}} 
+             </p> 
+             <p>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="3em" height="2em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M19 7H5v7H3V5H1v15h2v-3h18v3h2v-9a4 4 0 0 0-4-4" fill="orange"/></svg>
+  
+              Hospitalisés: <br>
+               
+               {{hospita}}
+             </p>
+             <!-- <p> last update : {{data.lastUpdate|date:'longDate'}}</p> -->
+              
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 nd-3">
+          <div class="card card-recovered"  style="background-color: #e9fdf2;">
+            <div class="cardbody"> 
+             <h3 class="card-title">Géris
+            <i class="fa fa-smile-o" style="font-size:36px;color:rgb(68, 47, 255)"></i>
+             </h3> 
+             <p class="card-text" [countUp]="data['recovered']">
+            
+               {{data['recovered'] |number}}  
+             </p>
+             <br>
+             <p> 
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="3em" height="2em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M10 10.414l4 4l5.707-5.707L22 11V5h-6l2.293 2.293L14 11.586l-4-4l-7.707 7.707l1.414 1.414z" fill="green"/></svg> 
+              {{ poureco| number }} % </p>
+             <!-- <p> last update : {{data.lastUpdate|date:'longDate'}}</p> -->
+              
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 nd-3">
+          <div class="card card-deaths" style="background-color: #fff3f3;">
+            <div class="cardbody">
+             <h3 class="card-title">Morts
+              <i class="fa fa-frown-o" style="font-size:36px;color:red"></i>
+  
+             </h3> 
+             <p class="card-text" [countUp]="data['deaths']">
+               {{data['deaths']|number}}
+             </p>
+             <br>
+             <p style="color: brown;"> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="3em" height="2em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M10 10.414l4 4l5.707-5.707L22 11V5h-6l2.293 2.293L14 11.586l-4-4l-7.707 7.707l1.414 1.414z" fill="red"/></svg> {{ pourdeth | number}} % </p>
+             
+             <!-- <p> last update : {{data.lastUpdate|date:'longDate'}}</p> -->
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!global">
+      <ul class="list-group">
+        <li *ngFor="let re of datanv"  class="list-group-item d-flex justify-content-between align-items-center">
+         
+          <p style="font-size: 1.3em; "> ville:<strong> <em>  {{ re.ville}} </em></strong> </p>
+        <p  style="font-size: 1.3em;"> Confirmés:  <strong> <em>  <i class="fa fa-plus" style=" font-size: 1em; color: red;"></i> {{ re.confirmed}} </em></strong> </p>
+        <p  style="font-size: 1.3em;"> Géris: <strong> <em>  <i class="fa fa-plus" style=" font-size: 1em; color: red;"></i> {{ re.recovered}} </em></strong>  </p>
+        <p  style="font-size: 1.3em;"> Derniére mise à jour:<strong> <em> {{ re.lastupdate| date}}  </em></strong> </p>
+        <a href="#more">
+          <button (click)="getinfovil(re)" class="btn btn-primary btn-sm">
+         
+              <i class="fa fa-plus"></i>Plus d'info</button>
+            </a>
+          
+            <!-- {{ re.confirmed}} -->
+   
+       </li>
+       
+   
+   </ul>
+  </div>
+    </div> 
+  </section>
+ 
+  <div  class="d-md-flex">
+    <div   class="convaa" >
+      <div  align='center'>
+        <strong> {{reeg}} </strong>  
+      </div>
+          <canvas *ngIf="global" baseChart
+          [chartType]='lineChartType'
+          [datasets]="lineChartData"
+          [labels]="lineChartLabels"
+          style="background-color: rgb(251, 255, 255);"></canvas>
+         
+          <canvas *ngIf="!global"baseChart
+          [chartType]='barChartType'
+          [datasets]="barChartData"
+          [labels]="barChartLabels" 
+          > </canvas>
+      </div>
+      
+       
+     
+    
+      <div class="convaa" >
+          <canvas *ngIf="global" baseChart
+          [chartType]='lineChartType'
+          [datasets]="lineChartData2"
+          [labels]="lineChartLabels2"
+         ></canvas>
+          <div *ngIf="!global">
+            <div id="more" align='center'>
+              <strong> {{vil}} </strong>  
+            </div>
+          <canvas *ngIf="bol" baseChart 
+            [data]="doughnutChartData"
+            [labels]="doughnutChartLabels"
+            [chartType]="doughnutChartType">
+          </canvas>
+        </div>
+      </div>
+</div>
+    <br><br><br><br><br><br><br> <br>
+    <br>
+    <br>
+    <br> 
+    <br>
+    <br>
+    <br>

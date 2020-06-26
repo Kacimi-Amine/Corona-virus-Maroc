@@ -1,0 +1,44 @@
+body,html {
+    height: 100%;
+    font-family: 'Alegreya sans','sans-serif';
+    color:lightslategray;
+}
+
+#navigation .navbar a{
+    color:rgb(0, 0, 0);
+}
+#navigation .navbar a:hover{
+    color: sienna;
+}
+
+#statistic{
+    padding:2rem 0;
+}
+#statistic .card-text{
+    font-weight: bold;
+    font-size: 50px;
+    color: tomato;
+}
+#statistic .card-infected{
+    border-bottom-color: #f6ec5c;
+    border-bottom-width: 12px;
+}
+#statistic .card-recovered{
+    border-bottom-color: lightgreen;
+    border-bottom-width: 12px;
+}
+#statistic .card-deaths{
+    border-bottom-color: lightsalmon;
+    border-bottom-width: 12px;
+}
+@media only screen and (min-width: 1000px) {
+    div.convaa {
+     width: 2000px; height: 300px;
+    }
+  }
+  
+  @media only screen and (max-width: 800px) {
+   div.convaa {
+    width: 500px; height: 100px;
+    }
+  }
